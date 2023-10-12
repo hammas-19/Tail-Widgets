@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white">
+  <header class="bg-mangolia">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="md:flex md:items-center md:gap-12">
@@ -53,12 +53,12 @@
 
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
-            <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="/">
+            <a class="rounded-md bg-lyell px-5 py-2.5 text-sm font-medium text-blackCow " href="/">
               Login
             </a>
 
             <div class="hidden sm:flex">
-              <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="/">
+              <a class="rounded-md bg-lyell px-5 py-2.5 text-sm font-medium text-teal-600" href="/">
                 Register
               </a>
             </div>

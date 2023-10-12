@@ -1,5 +1,5 @@
 <template>
   <div>
-    hammas
+    <HomeHeroBanner />
   </div>
 </template>
