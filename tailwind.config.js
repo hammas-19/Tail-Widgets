@@ -15,27 +15,27 @@ module.exports = {
 			lg: "976px",
 			xl: "1440px",
 		},
-		colors: {
-			Bluish:
-				"#2D6FBC",
-			BalticSea:
-				"#262626",
-			snowDrift:
-				"#F7F9FA",
-			blackCow:
-				"#4A4A4A",
-			lyell:
-				"#FFFEE2 ",
-			lightGrey:
-				"#DADADA",
-			lavender:
-				"#E2E3FF",
-			transparent:
-				"transparent",
-			white: "#fff",
-			mangolia:
-				"#f5f2fc ",
-		},
+		// colors: {
+		// 	Bluish:
+		// 		"#2D6FBC",
+		// 	BalticSea:
+		// 		"#262626",
+		// 	snowDrift:
+		// 		"#F7F9FA",
+		// 	blackCow:
+		// 		"#4A4A4A",
+		// 	[#FFFEE2]:
+		// 		"#FFFEE2 ",
+		// 	lightGrey:
+		// 		"#DADADA",
+		// 	lavender:
+		// 		"#E2E3FF",
+		// 	transparent:
+		// 		"transparent",
+		// 	white: "#fff",
+		// 	[#f5f2fc]:
+		// 		"#f5f2fc ",
+		// },
 		extend: {},
 	},
 	plugins: [],
