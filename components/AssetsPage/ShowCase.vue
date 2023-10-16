@@ -1,7 +1,7 @@
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
@@ -64,7 +64,7 @@
 }
 </style>
 <template>
-  <div class="w-full">
+  <div class="w-full md:h-[calc(100vh-550px)] h-[calc(100vh-150px)]">
     <div class="flex w-fit">
       <button @click="activeTab = 'tab1'"
         :class="{ ' border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab === 'tab1', 'bg-[#]': activeTab !== 'tab1' }"
@@ -77,16 +77,20 @@
         Code
       </button>
     </div>
-    <div class=" border-2 min-h-80 p-5 border-black rounded-md rounded-tl-none"
-      :class="{ 'rounded-tl-md': activeTab === 'tab2' }">
+    <div class=" border-2 p-5 border-black rounded-md rounded-tl-none flex justify-center items-center "
+      :class="{ 'rounded-tl-lg': activeTab === 'tab2' }">
       <Transition name="fade">
-        <div v-if="activeTab === 'tab1'" class="flex justify-center items-center h-max p-4">
+        <div v-if="activeTab === 'tab1'" class="flex justify-center items-center p-4 h-full w-full">
 
           <!-- Components Renders Here -->
-          <button
+          <!-- <button
             class="relative py-2 px-8 text-black text-base font-bold uppercase rounded-[50px] overflow-hidden bg-man transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0">
             hover me!
-          </button>
+          </button> -->
+          
+          <span v-for="(items, index) in apiData" :key="index">
+            <div v-html="items.component_code" />
+          </span>
 
         </div>
       </Transition>
@@ -124,10 +128,8 @@
             <p class="text-green-400">$ Component code starts here!</p>
             <div class="p-5 code-container w-full">
 
-              <code>
-                           &lt;button class="relative py-2 px-8 text-black text-base font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"&gt;
-                           hover me!
-                           &lt;/button&gt;
+              <code v-for="(items, index) in apiData" :key="index">
+                           {{ items.component_code }}
                    </code>
             </div>
             <p class="text-green-400">$ ends here!</p>
@@ -138,11 +140,11 @@
       </div>
       </Transition>
     </div>
+    <!-- <pre>
+      {{ apiData }}
+    </pre> -->
   </div>
 </template>
-
-
-
 
 <script setup>
 const activeTab = ref('tab1')
@@ -160,4 +162,9 @@ function copyCodeToClipboard() {
 
   // alert("Code has been copied to the clipboard!");
 }
+
+const apiData = ref([])
+useStrapi('button-labs').then((response) => {
+  apiData.value = response.data.data;
+})
 </script>
