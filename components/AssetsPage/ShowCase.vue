@@ -64,23 +64,24 @@
 }
 </style>
 <template>
-  <div class="w-full md:h-[calc(100vh-550px)] h-[calc(100vh-150px)]">
+  <div class="w-full border-2 border-blue-500 md:h-[calc(100vh-550px)] h-[calc(100vh-150px)] overflow-y-scroll">
     <div class="flex w-fit">
-      <button @click="activeTab = 'tab1'"
+      <!-- <button @click="activeTab = 'tab1'"
         :class="{ ' border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab === 'tab1', 'bg-[#]': activeTab !== 'tab1' }"
         class="flex-1 px-4 py-2">
         View
-      </button>
-      <button @click="activeTab = 'tab2'"
-        :class="{ ' border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab === 'tab2', 'bg-[#]': activeTab !== 'tab2' }"
+      </button> -->
+      <button v-for="(tab, index) in tabs" :key="index" @click="activeTab = tab "
+        :class="{ 'border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab == tab }"
         class="flex-1 px-4 py-2">
-        Code
+        {{ tab }}
+        <!-- Code {{ index + 1 }} -->
       </button>
     </div>
     <div class=" border-2 p-5 border-black rounded-md rounded-tl-none flex justify-center items-center "
       :class="{ 'rounded-tl-lg': activeTab === 'tab2' }">
       <Transition name="fade">
-        <div v-if="activeTab === 'tab1'" class="flex justify-center items-center p-4 h-full w-full">
+        <div v-if="activeTab === 'tab1'" class="flex justify-center items-center p-4 border h-full w-full">
 
           <!-- Components Renders Here -->
           <!-- <button
@@ -88,14 +89,14 @@
             hover me!
           </button> -->
           
-          <span v-for="(items, index) in apiData" :key="index">
-            <div v-html="items.component_code" />
+          <span >
+            <div v-html="props.code" />
           </span>
 
         </div>
       </Transition>
       <Transition name="fade">
-      <div v-if="activeTab === 'tab2'">
+      <div v-if="activeTab === 'tab2'" class="">
 
         <!-- Code shows here -->
         <aside class="bg-black text-white p-6 rounded-lg w-full font-mono mt-2">
@@ -128,9 +129,9 @@
             <p class="text-green-400">$ Component code starts here!</p>
             <div class="p-5 code-container w-full">
 
-              <code v-for="(items, index) in apiData" :key="index">
-                           {{ items.component_code }}
-                   </code>
+              <span class="code-container">
+                {{ props.preview }}
+              </span>
             </div>
             <p class="text-green-400">$ ends here!</p>
           </div>
@@ -148,6 +149,7 @@
 
 <script setup>
 const activeTab = ref('tab1')
+const tabs = ['tab1', 'tab2']
 
 function copyCodeToClipboard() {
   const codeContainer = document.querySelector(".code-container");
@@ -163,8 +165,15 @@ function copyCodeToClipboard() {
   // alert("Code has been copied to the clipboard!");
 }
 
-const apiData = ref([])
-useStrapi('button-labs').then((response) => {
-  apiData.value = response.data.data;
+const props = defineProps({
+  code: {
+    type: String,
+    required: true
+  },
+  preview: {
+    type: String,
+    required: true
+  }
 })
+
 </script>
