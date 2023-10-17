@@ -1,8 +1,8 @@
 <template>
-  <span  class="group relative block h-64 w-full max-w-[240px] bg-[#FFFEE2]">
+  <NuxtLink :to="props.linkTo"  class="group relative block h-64 w-full max-w-[240px] bg-[#FFFEE2]">
     <span class="absolute inset-0 border-2 border-dashed border-black"></span>
 
-    <div
+    <div 
       class="relative flex h-full transform items-end border-2 border-black bg-[#f5f2fc] transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
       <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 sm:h-12 sm:w-12" fill="none" viewBox="0 0 24 24"
@@ -16,16 +16,11 @@
 
       <div class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
         <h3 class="mt-4 text-xl font-medium sm:text-2xl">{{ props.title}}</h3>
-<!-- 
-        <p class="mt-4 text-sm sm:text-base">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate,
-          praesentium voluptatem omnis atque culpa repellendus.
-        </p> -->
 
         <p class="mt-8 font-bold">Explore {{ props.count }} {{ props.title }} </p>
       </div>
     </div>
-  </span>
+  </NuxtLink>
 </template>
 <script setup>
 const props = defineProps({
@@ -36,6 +31,10 @@ const props = defineProps({
   count: {
     type: Number,
     required: true
-  }
+  },
+  linkTo: {
+    type: String,
+    required: false
+  }  
 })
 </script>

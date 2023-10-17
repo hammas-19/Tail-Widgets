@@ -1,13 +1,14 @@
 <template>
   <div class="grid md:grid-cols-4 grid-cols-2 gap-5 justify-items-center max-w-7xl mx-auto">
-    <HomeShowCard v-for="(items, index) in assets" :key="index" :count="items.count" :title="items.type" />
+    <HomeShowCard v-for="(items, index) in assets" :key="index" :count="items.count" :title="items.type" :link-to="items.link" />
   </div>
 </template>
 <script setup>
 const assets = [
   {
     type: "Buttons",
-    count: "45"
+    count: "45",
+    link: '/buttons'
   },
   {
     type: "Badges",

@@ -3,50 +3,22 @@
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="md:flex md:items-center md:gap-12">
-          <a class="block text-teal-600" href="/">
-            <!-- <span class="sr-only">Home</span> -->
-            <NuxtLink to="/">
-              <img src="/Tail_widget_logo.png" class="w-10 h-fit" alt="TailWidget">
-            </NuxtLink>
-          </a>
+          <NuxtLink to="/">
+            <img src="/Tail_widget_logo.png" class="w-10 h-fit" alt="TailWidget">
+          </NuxtLink>
         </div>
 
         <div class="hidden md:block">
           <nav aria-label="Global">
-            <ul class="flex items-center gap-6 text-sm">
+            <ul class="flex items-center justify-center gap-6 text-sm">
               <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="/">
+                <a class="text-gray-500 transition hover:text-black text-sm font-semibold" href="/">
                   About
                 </a>
               </li>
-
               <li>
-                <NuxtLink to="/buttons" class="text-gray-500 transition hover:text-gray-500/75">
-                  Buttons
-                </NuxtLink>
-              </li>
-
-              <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="/">
-                  History
-                </a>
-              </li>
-
-              <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="/">
-                  Services
-                </a>
-              </li>
-
-              <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="/">
-                  Projects
-                </a>
-              </li>
-
-              <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="/">
-                  Blog
+                <a class="text-gray-500 transition hover:text-black text-sm font-semibold" href="/">
+                  Policy
                 </a>
               </li>
             </ul>

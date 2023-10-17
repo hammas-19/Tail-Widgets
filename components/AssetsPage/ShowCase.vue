@@ -1,4 +1,14 @@
 <style scoped>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.codeWindow::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.codeWindow {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -64,39 +74,29 @@
 }
 </style>
 <template>
-  <div class="w-full border-2 border-blue-500 md:h-[calc(100vh-550px)] h-[calc(100vh-150px)] overflow-y-scroll">
+  <div class="codeWindow overflow-y-scroll w-full md:h-[calc(100vh-500px)] h-[calc(100vh-150px)]">
     <div class="flex w-fit">
-      <!-- <button @click="activeTab = 'tab1'"
-        :class="{ ' border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab === 'tab1', 'bg-[#]': activeTab !== 'tab1' }"
-        class="flex-1 px-4 py-2">
-        View
-      </button> -->
+
       <button v-for="(tab, index) in tabs" :key="index" @click="activeTab = tab "
-        :class="{ 'border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold': activeTab == tab }"
+        :class="{ 'border-2  border-b-0 border-black rounded-md rounded-b-none text-black text-base font-semibold bg-[#f5f2fc]': activeTab == tab }"
         class="flex-1 px-4 py-2">
         {{ tab }}
-        <!-- Code {{ index + 1 }} -->
       </button>
-    </div>
-    <div class=" border-2 p-5 border-black rounded-md rounded-tl-none flex justify-center items-center "
-      :class="{ 'rounded-tl-lg': activeTab === 'tab2' }">
-      <Transition name="fade">
-        <div v-if="activeTab === 'tab1'" class="flex justify-center items-center p-4 border h-full w-full">
 
-          <!-- Components Renders Here -->
-          <!-- <button
-            class="relative py-2 px-8 text-black text-base font-bold uppercase rounded-[50px] overflow-hidden bg-man transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0">
-            hover me!
-          </button> -->
+    </div>
+    <div class=" border-2 p-5 border-black rounded-md rounded-tl-none flex justify-center items-center bg-[#f5f2fc]"
+      :class="{ 'rounded-tl-md': activeTab === 'Code' }">
+      <Transition name="fade">
+        <div v-if="activeTab === 'Preview'" class="flex justify-center items-center p-4  h-full w-full">
           
-          <span >
+          <span>
             <div v-html="props.code" />
           </span>
 
         </div>
       </Transition>
       <Transition name="fade">
-      <div v-if="activeTab === 'tab2'" class="">
+      <div v-if="activeTab === 'Code'" class="">
 
         <!-- Code shows here -->
         <aside class="bg-black text-white p-6 rounded-lg w-full font-mono mt-2">
@@ -107,7 +107,6 @@
               <div class="w-3 h-3 rounded-full bg-green-500"></div>
               <p class="text-sm text-white pl-3"> /Tailwind Css</p>
             </div>
-            <!-- <button @click="copyCodeToClipboard()">Copy to Clipboard</button> -->
 
             <div @click="copyCodeToClipboard()">
               <label class="container w-fit">
@@ -135,21 +134,18 @@
             </div>
             <p class="text-green-400">$ ends here!</p>
           </div>
-          <!-- <button @click="copyCodeToClipboard()">Copy to Clipboard</button> -->
 
         </aside>
       </div>
       </Transition>
     </div>
-    <!-- <pre>
-      {{ apiData }}
-    </pre> -->
+
   </div>
 </template>
 
 <script setup>
-const activeTab = ref('tab1')
-const tabs = ['tab1', 'tab2']
+const activeTab = ref('Preview')
+const tabs = ['Preview', 'Code']
 
 function copyCodeToClipboard() {
   const codeContainer = document.querySelector(".code-container");
